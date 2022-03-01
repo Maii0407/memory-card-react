@@ -20,7 +20,27 @@
   margin-right: 5px;
 }
 
-.card {
+.card-container {
+  display: grid;
+  grid-template-columns: repeat( 4, 1fr );
+  grid-template-rows: repeat( 2, 1fr );
+}
+
+.card-container .card img {
+  width: 200px;
+  height: 200px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.card-container .card {
   display: flex;
   flex-direction: column;
+  border: 1px solid red;
+}
+
+.card-container .card p {
+  text-align: center;
+  color: silver;
+  cursor: pointer;
 }
