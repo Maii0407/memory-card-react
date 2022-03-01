@@ -16,6 +16,11 @@
   width: 100%;
 }
 
-.App .scoreboard-container p {
+.App .scoreboard-container .score {
   margin-right: 5px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
 }
