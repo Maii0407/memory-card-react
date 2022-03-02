@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 import { Scoreboard } from './Score';
-import { Card } from './Card';
+import { RenderCards } from './RenderCard';
 
 import agumonIcon from './image-asset/agumon.jpeg';
 import gabumonIcon from './image-asset/gabumon.png'
@@ -26,6 +26,8 @@ const Gameboard = () => {
   const [ patamon, setPatamon ] = useState({ name: 'PATAMON', icon: patamonIcon });
   const [ tailmon, setTailmon ] = useState({ name: 'TAILMON', icon: tailmonIcon });
 
+  const cardArray = [ agumon, gabumon, tentomon, palmon, piyomon, gomamon, patamon, tailmon ];
+
   const addScore = () => {
     setScore( score + 1 );
   };
@@ -38,16 +40,7 @@ const Gameboard = () => {
   return (
     <div className='gameboard'>
       <Scoreboard score={ score } highscore={ highscore }/>
-      <div className='card-container'>
-        <Card icon={ agumon.icon } name={ agumon.name } function={ addScore }/>
-        <Card icon={ gabumon.icon } name={ gabumon.name } function={ addScore }/>
-        <Card icon={ tentomon.icon } name={ tentomon.name } function={ addScore }/>
-        <Card icon={ palmon.icon } name={ palmon.name } function={ addScore }/>
-        <Card icon={ piyomon.icon } name={ piyomon.name } function={ addScore }/>
-        <Card icon={ gomamon.icon } name={ gomamon.name } function={ addScore }/>
-        <Card icon={ patamon.icon } name={ patamon.name } function={ addScore }/>
-        <Card icon={ tailmon.icon } name={ tailmon.name } function={ addScore }/>
-      </div>
+      <RenderCards array={ cardArray } function={ addScore }/>
       <button onClick={ addHighscore }>ADD HIGHSCORE</button>
     </div>
     
@@ -55,3 +48,14 @@ const Gameboard = () => {
 };
 
 export { Gameboard };
+
+/*
+<Card icon={ agumon.icon } name={ agumon.name } function={ addScore }/>
+        <Card icon={ gabumon.icon } name={ gabumon.name } function={ addScore }/>
+        <Card icon={ tentomon.icon } name={ tentomon.name } function={ addScore }/>
+        <Card icon={ palmon.icon } name={ palmon.name } function={ addScore }/>
+        <Card icon={ piyomon.icon } name={ piyomon.name } function={ addScore }/>
+        <Card icon={ gomamon.icon } name={ gomamon.name } function={ addScore }/>
+        <Card icon={ patamon.icon } name={ patamon.name } function={ addScore }/>
+        <Card icon={ tailmon.icon } name={ tailmon.name } function={ addScore }/>
+        */
