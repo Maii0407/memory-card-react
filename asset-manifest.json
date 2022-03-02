@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/memory-card-react/static/css/main.338c470d.css",
+    "main.js": "/memory-card-react/static/js/main.c90d95d3.js",
+    "static/media/gabumon.png": "/memory-card-react/static/media/gabumon.f614e91a98e8368b38cd.png",
+    "static/media/patamon.png": "/memory-card-react/static/media/patamon.e3b7dca1c9557592ed2f.png",
+    "static/media/agumon.jpeg": "/memory-card-react/static/media/agumon.fe3bb172accabd0a6a3d.jpeg",
+    "static/media/palmon.png": "/memory-card-react/static/media/palmon.24f2b51b5794687e896e.png",
+    "static/media/gomamon.png": "/memory-card-react/static/media/gomamon.ac6a35659a9c5f5a2795.png",
+    "static/media/tailmon.jpg": "/memory-card-react/static/media/tailmon.975eed31729635fef3cd.jpg",
+    "static/media/piyomon.jpg": "/memory-card-react/static/media/piyomon.ada715546d4a7eb9706f.jpg",
+    "static/media/tentomon.jpg": "/memory-card-react/static/media/tentomon.b41b7e05152261b77b45.jpg",
+    "index.html": "/memory-card-react/index.html",
+    "main.338c470d.css.map": "/memory-card-react/static/css/main.338c470d.css.map",
+    "main.c90d95d3.js.map": "/memory-card-react/static/js/main.c90d95d3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.338c470d.css",
+    "static/js/main.c90d95d3.js"
+  ]
+}
