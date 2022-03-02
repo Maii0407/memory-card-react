@@ -28,11 +28,27 @@ const Gameboard = () => {
 
   const cardArray = [ agumon, gabumon, tentomon, palmon, piyomon, gomamon, patamon, tailmon ];
 
+  const shuffleArr = ( array ) => {
+    let currentIndex = array.length, randomIndex;
+
+    while( currentIndex !== 0 ) {
+      randomIndex = Math.floor( Math.random() * currentIndex );
+      currentIndex--;
+
+      [ array[ currentIndex ], array[ randomIndex ] ] = [ array[ randomIndex ], array[ currentIndex ] ];
+    }
+    return array;
+  };
+
   const addScore = () => {
     setScore( score + 1 );
   };
 
   const addHighscore = () => {
+    if( highscore > score ) {
+      setScore(0);
+      return;
+    }
     setHighscore( score );
     setScore(0);
   };
@@ -40,7 +56,7 @@ const Gameboard = () => {
   return (
     <div className='gameboard'>
       <Scoreboard score={ score } highscore={ highscore }/>
-      <RenderCards array={ cardArray } function={ addScore }/>
+      <RenderCards array={ shuffleArr( cardArray ) } function={ addScore }/>
       <button onClick={ addHighscore }>ADD HIGHSCORE</button>
     </div>
     
@@ -48,14 +64,3 @@ const Gameboard = () => {
 };
 
 export { Gameboard };
-
-/*
-<Card icon={ agumon.icon } name={ agumon.name } function={ addScore }/>
-        <Card icon={ gabumon.icon } name={ gabumon.name } function={ addScore }/>
-        <Card icon={ tentomon.icon } name={ tentomon.name } function={ addScore }/>
-        <Card icon={ palmon.icon } name={ palmon.name } function={ addScore }/>
-        <Card icon={ piyomon.icon } name={ piyomon.name } function={ addScore }/>
-        <Card icon={ gomamon.icon } name={ gomamon.name } function={ addScore }/>
-        <Card icon={ patamon.icon } name={ patamon.name } function={ addScore }/>
-        <Card icon={ tailmon.icon } name={ tailmon.name } function={ addScore }/>
-        */
