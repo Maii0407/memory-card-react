@@ -1,19 +1,35 @@
-import React from 'react';
+import axios from 'axios';
 
-import { Gameboard } from './components/Gameboard';
+import {
+  Button,
+  Flex
+} from '@chakra-ui/react';
 
-import './App.css';
+export const App = () => {
+  const handleClick = async () => {
+    try {
+      const response = await axios({
+        method: 'get',
+        url: 'https://digimon-api.vercel.app/api/digimon'
+      });
 
-const App = () => {
+      console.table( response.data );
+
+      return response.data;
+    }
+    catch( error ) {
+      console.log({ error })
+    }
+  }
   return (
-    <div className='App'>
-      <div className='header-container'>
-        <h1>DIGIMON MEMORY GAME</h1>
-        <h4>Get points by clicking a DIGIMON but if you click it more than once its gameover for you.</h4>
-      </div>
-      <Gameboard/>
-    </div>
-  );
+    <Flex>
+      <Button
+        onClick={ () => handleClick() }
+        variant='outline'
+        colorScheme='gray'
+      >
+        Click Me
+      </Button>
+    </Flex>
+  )
 };
-
-export { App };
