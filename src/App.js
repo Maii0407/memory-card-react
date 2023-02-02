@@ -1,35 +1,40 @@
-import axios from 'axios';
+import { useState, createContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+import { StartPage } from './pages/Start';
+import { PlayPage } from './pages/Play';
 
 import {
-  Button,
   Flex
 } from '@chakra-ui/react';
 
+export const GlobalContext = createContext( null );
+
 export const App = () => {
-  const handleClick = async () => {
-    try {
-      const response = await axios({
-        method: 'get',
-        url: 'https://digimon-api.vercel.app/api/digimon'
-      });
+  const [ allDigimon, setAllDigimon ] = useState([]);
+  const [ currentArray, setCurrentArray ] = useState([]);
+  const [ clickedArray, setClickedArray ] = useState([]);
 
-      console.table( response.data );
-
-      return response.data;
-    }
-    catch( error ) {
-      console.log({ error })
-    }
-  }
   return (
-    <Flex>
-      <Button
-        onClick={ () => handleClick() }
-        variant='outline'
-        colorScheme='gray'
+    <Flex
+      direction='column'
+    >
+
+      <GlobalContext.Provider
+        value={{
+          allDigimon, setAllDigimon,
+          currentArray, setCurrentArray,
+          clickedArray, setClickedArray
+        }}
       >
-        Click Me
-      </Button>
+        <Routes>
+
+          <Route path='/' element={ <StartPage /> } />
+          <Route path='/play' element={ <PlayPage /> } />
+
+        </Routes>
+      </GlobalContext.Provider>
+
     </Flex>
   )
 };
