@@ -10,27 +10,43 @@ import {
 } from "@chakra-ui/react";
 
 export const PlayCards = ({ data }) => {
-  const { currentArray, setCurrentArray } = useContext( GlobalContext );
+  const {
+    currentArray,
+    setCurrentArray,
+    clickedArray,
+    setClickedArray,
+    shuffleArray,
+    setGameOver
+  } = useContext( GlobalContext );
   const toast = useToast();
 
   const handleClick = () => {
-    let newArr = [ ...currentArray ]
-    //Fisher Yates algorithm for shuffling the digimon list array
-    for (let i = newArr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      const temp = newArr[i];
-      newArr[i] = newArr[j];
-      newArr[j] = temp;
-    }
-    setCurrentArray( newArr );
+    const found = clickedArray.find( element => element === data );
 
-    toast({
-      title: `${ data.name } +1`,
-      status: 'success',
-      duration: 3000,
-      position: 'top',
-      isClosable: true
-    })
+    if( found ) {
+      toast({
+        title: `${ data.name } Already Clicked`,
+        status: 'error',
+        duration: 3000,
+        position: 'top',
+        isClosable: true
+      });
+
+      setGameOver( true );
+    }
+    else {
+      setClickedArray([ ...clickedArray, data ]);
+
+      shuffleArray( currentArray, setCurrentArray );
+  
+      toast({
+        title: `${ data.name } +1`,
+        status: 'success',
+        duration: 3000,
+        position: 'top',
+        isClosable: true
+      })
+    }
   }
 
   return (
