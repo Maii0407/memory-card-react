@@ -15,7 +15,6 @@ export const StartPage = () => {
       direction='column'
       justifyContent='center'
       alignItems='center'
-      border='1px solid red'
     >
 
       <Button

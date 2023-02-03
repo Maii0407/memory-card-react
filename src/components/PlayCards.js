@@ -16,7 +16,8 @@ export const PlayCards = ({ data }) => {
     clickedArray,
     setClickedArray,
     shuffleArray,
-    setGameOver
+    setGameOver,
+    setCurrentLevel
   } = useContext( GlobalContext );
   const toast = useToast();
 
@@ -32,6 +33,8 @@ export const PlayCards = ({ data }) => {
         isClosable: true
       });
 
+      //back to level 1 lol
+      setCurrentLevel(1);
       setGameOver( true );
     }
     else {

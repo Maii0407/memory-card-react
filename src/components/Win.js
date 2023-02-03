@@ -9,18 +9,13 @@ import {
   Text
 } from "@chakra-ui/react";
 
-export const NextLevelScreen = () => {
-  const { setNextLevel, newGame } = useContext( GlobalContext );
+export const WinScreen = () => {
+  const { setWin } = useContext( GlobalContext );
   const navigate = useNavigate();
 
   const handleClose = () => {
-    setNextLevel( false );
+    setWin( false );
     navigate('/');
-  };
-
-  const handleNewGame = () => {
-    setNextLevel( false );
-    newGame();
   };
 
   return (
@@ -38,37 +33,27 @@ export const NextLevelScreen = () => {
       <Flex
         direction='column'
         backgroundColor='gray.900'
-        padding='50px 20px'
+        padding='50px 5px'
         alignItems='center'
         borderRadius='10px'
+        gap='10px'
       >
         
         <Text
           textStyle='pixel'
           color='green.600'
+          textAlign='center'
         >
-          You Win
+          LOL YOU WON,
+          at what cost
         </Text>
-        <Flex
-          direction='row'
-          gap='10px'
-          padding='10px'
+        <Button
+          onClick={ () => handleClose() }
+          variant='outline'
+          colorScheme='green'
         >
-          <Button
-            onClick={ () => handleClose() }
-            variant='outline'
-            colorScheme='red'
-          >
-            Finish
-          </Button>
-          <Button
-            onClick={ () => handleNewGame() }
-            variant='outline'
-            colorScheme='green'
-          >
-            Continue
-          </Button>
-        </Flex>
+          Finish
+        </Button>
       </Flex>
     </Flex>
   )

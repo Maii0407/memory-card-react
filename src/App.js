@@ -5,6 +5,8 @@ import axios from 'axios';
 import { StartPage } from './pages/Start';
 import { PlayPage } from './pages/Play';
 import { GameOverScreen } from './components/GameOver';
+import { NextLevelScreen } from './components/NextLevel';
+import { WinScreen } from './components/Win';
 
 import {
   Flex
@@ -23,6 +25,7 @@ export const App = () => {
   //used for game end condition
   const [ gameOver, setGameOver ] = useState( false );
   const [ nextLevel, setNextLevel ] = useState( false );
+  const [ win, setWin ] = useState( false );
 
   const navigate = useNavigate();
 
@@ -57,8 +60,9 @@ export const App = () => {
   const newGame = () => {
     shuffleArray( allDigimon, setAllDigimon );
     setCurrentArray( allDigimon.slice( 0, currentLevel * 4 ) );
+    setClickedArray([]);
     navigate( '/play' );
-  }
+  };
 
   useEffect(() => {
     if( allDigimon.length === 0 ) {
@@ -66,7 +70,7 @@ export const App = () => {
       fetchDigimonList()
     }
     return;
-  }, []);
+  });
 
   return (
     <Flex
@@ -81,6 +85,7 @@ export const App = () => {
           currentLevel, setCurrentLevel,
           gameOver, setGameOver,
           nextLevel, setNextLevel,
+          win, setWin,
           shuffleArray,
           newGame
         }}
@@ -94,6 +99,14 @@ export const App = () => {
         </Routes>
         {
           gameOver ? <GameOverScreen />
+          : null
+        }
+        {
+          nextLevel ? <NextLevelScreen />
+          : null
+        }
+        {
+          win ? <WinScreen />
           : null
         }
 
