@@ -8,12 +8,16 @@ import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import { App } from './App';
 
 const theme = extendTheme({
+  textStyles: {
+    pixel: {
+      fontFamily: `'Press Start 2P', cursive`
+    }
+  },
   styles: {
     global: {
       body: {
         backgroundColor: 'gray.900',
         color: 'white',
-        // fontFamily: `'Press Start 2P', cursive`
       }
     }
   }

@@ -12,7 +12,9 @@ export const GlobalContext = createContext( null );
 
 export const App = () => {
   const [ allDigimon, setAllDigimon ] = useState([]);
+  //array for current level of difficulty
   const [ currentArray, setCurrentArray ] = useState([]);
+  //array for already clicked cards
   const [ clickedArray, setClickedArray ] = useState([]);
 
   return (
@@ -24,7 +26,7 @@ export const App = () => {
         value={{
           allDigimon, setAllDigimon,
           currentArray, setCurrentArray,
-          clickedArray, setClickedArray
+          clickedArray, setClickedArray,
         }}
       >
         <Routes>

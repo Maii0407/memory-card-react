@@ -21,20 +21,20 @@ export const StartPage = () => {
         url: 'https://digimon-api.vercel.app/api/digimon'
       });
 
-      const digimonList = response.data;
+      //all digimon array
+      const data = response.data;
 
       //Fisher Yates algorithm for shuffling the digimon list array
-      for (let i = digimonList.length - 1; i > 0; i--) {
+      for (let i = data.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-        const temp = digimonList[i];
-        digimonList[i] = digimonList[j];
-        digimonList[j] = temp;
+        const temp = data[i];
+        data[i] = data[j];
+        data[j] = temp;
       }
+      setAllDigimon( data );
 
       //this is for setting up level 1 of the game
-      const level1Array = digimonList.slice( 0, 10 );
-
-      setAllDigimon( digimonList );
+      const level1Array = data.slice( 0, 4 );
       setCurrentArray( level1Array );
     }
     catch( error ) {
@@ -55,6 +55,7 @@ export const StartPage = () => {
 
       <Button
         onClick={ () => handleClick() }
+        textStyle='pixel'
         variant='outline'
         colorScheme='green'
       >
