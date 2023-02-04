@@ -1,20 +1,29 @@
-import { useState, createContext, useEffect } from 'react';
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import '@fontsource/press-start-2p';
 
-import { StartPage } from './pages/Start';
-import { PlayPage } from './pages/Play';
-import { GameOverScreen } from './components/GameOver';
-import { NextLevelScreen } from './components/NextLevel';
-import { WinScreen } from './components/Win';
+import { useState, createContext } from 'react';
+import { useRouter } from 'next/router';
 
-import {
-  Flex
-} from '@chakra-ui/react';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+
+const theme = extendTheme({
+  textStyles: {
+    pixel: {
+      fontFamily: `'Press Start 2P', cursive`
+    }
+  },
+  styles: {
+    global: {
+      body: {
+        backgroundColor: 'gray.900',
+        color: 'white',
+      }
+    }
+  }
+});
 
 export const GlobalContext = createContext( null );
 
-export const App = () => {
+export default function App({ Component, pageProps }) {
   const [ allDigimon, setAllDigimon ] = useState([]);
   //array for current level of difficulty
   const [ currentArray, setCurrentArray ] = useState([]);
@@ -27,7 +36,7 @@ export const App = () => {
   const [ nextLevel, setNextLevel ] = useState( false );
   const [ win, setWin ] = useState( false );
 
-  const navigate = useNavigate();
+  const router = useRouter()
 
   const shuffleArray = ( array, setArrayFunc ) => {
     let newArr = [ ...array ];
@@ -43,40 +52,15 @@ export const App = () => {
     return setArrayFunc( newArr )
   };
 
-  const fetchDigimonList = async () => {
-    try {
-      const response = await axios({
-        method: 'get',
-        url: 'https://digimon-api.vercel.app/api/digimon'
-      });
-
-      return shuffleArray( response.data, setAllDigimon );
-    }
-    catch( error ) {
-      console.log({ error })
-    }
-  };
-
   const newGame = () => {
     shuffleArray( allDigimon, setAllDigimon );
     setCurrentArray( allDigimon.slice( 0, currentLevel * 4 ) );
     setClickedArray([]);
-    navigate( '/play' );
+    router.push( '/play' );
   };
 
-  useEffect(() => {
-    if( allDigimon.length === 0 ) {
-      navigate('/');
-      fetchDigimonList()
-    }
-    return;
-  });
-
   return (
-    <Flex
-      direction='column'
-    >
-
+    <ChakraProvider theme={ theme } >
       <GlobalContext.Provider
         value={{
           allDigimon, setAllDigimon,
@@ -90,28 +74,8 @@ export const App = () => {
           newGame
         }}
       >
-
-        <Routes>
-
-          <Route path='/' element={ <StartPage /> } />
-          <Route path='/play' element={ <PlayPage /> } />
-
-        </Routes>
-        {
-          gameOver ? <GameOverScreen />
-          : null
-        }
-        {
-          nextLevel ? <NextLevelScreen />
-          : null
-        }
-        {
-          win ? <WinScreen />
-          : null
-        }
-
+        <Component {...pageProps} />
       </GlobalContext.Provider>
-
-    </Flex>
+    </ChakraProvider>
   )
-};
+}

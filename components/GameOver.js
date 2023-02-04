@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/router";
 
-import { GlobalContext } from "../App";
+import { GlobalContext } from "@/pages/_app";
 
 import {
   Button,
@@ -11,11 +11,11 @@ import {
 
 export const GameOverScreen = () => {
   const { setGameOver, newGame } = useContext( GlobalContext );
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleClose = () => {
     setGameOver( false );
-    navigate('/');
+    router.push('/');
   };
 
   const handleNewGame = () => {

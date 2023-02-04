@@ -1,7 +1,10 @@
 import { useContext, useEffect } from "react";
 
-import { GlobalContext } from "../App";
-import { PlayCards } from "../components/PlayCards";
+import { GlobalContext } from "./_app";
+import { PlayCards } from "@/components/PlayCards";
+import { GameOverScreen } from "@/components/GameOver";
+import { NextLevelScreen } from "@/components/NextLevel";
+import { WinScreen } from "@/components/Win";
 
 import {
   Flex,
@@ -9,15 +12,15 @@ import {
   Text
 } from "@chakra-ui/react"
 
-export const PlayPage = () => {
+export default function Play() {
   const {
+    allDigimon,
     currentArray,
     clickedArray,
-    setNextLevel,
-    currentLevel,
-    setCurrentLevel,
-    allDigimon,
-    setWin
+    gameOver,
+    nextLevel, setNextLevel,
+    win, setWin,
+    currentLevel, setCurrentLevel,
   } = useContext( GlobalContext );
 
   useEffect(() => {
@@ -60,6 +63,14 @@ export const PlayPage = () => {
           })
         }
       </Grid>
+      
+      {
+        gameOver ? <GameOverScreen />
+        : nextLevel ? <NextLevelScreen />
+        : win ? <WinScreen />
+        : null
+      }
+
     </Flex>
   )
 }
