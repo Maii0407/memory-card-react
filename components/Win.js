@@ -10,10 +10,11 @@ import {
 } from "@chakra-ui/react";
 
 export const WinScreen = () => {
-  const { setWin } = useContext( GlobalContext );
+  const { setWin, updateHighscore } = useContext( GlobalContext );
   const router = useRouter();
 
   const handleClose = () => {
+    updateHighscore();
     setWin( false );
     router.push('/');
   };

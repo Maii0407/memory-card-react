@@ -14,10 +14,12 @@ export const GameOverScreen = () => {
     setGameOver,
     setCurrentLevel,
     refreshGame,
+    updateHighscore
   } = useContext( GlobalContext );
   const router = useRouter();
 
   const onFinishGame = () => {
+    updateHighscore();
     setGameOver( false );
     setCurrentLevel(1);
 
@@ -25,6 +27,7 @@ export const GameOverScreen = () => {
   };
 
   const onNewGame = () => {
+    updateHighscore();
     setGameOver( false );
     setCurrentLevel(1);
     refreshGame();

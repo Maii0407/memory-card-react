@@ -61,6 +61,13 @@ export default function App({ Component, pageProps }) {
     setClickedArray([]);
   };
 
+  const updateHighscore = () => {
+    if( currentLevel > highscore ) {
+      setHighscore( currentLevel );
+      return localStorage.setItem( 'highscore', JSON.stringify({ value: highscore }));
+    }
+  };
+
   return (
     <>
 
@@ -82,6 +89,7 @@ export default function App({ Component, pageProps }) {
             highscore, setHighscore,
             shuffleArray,
             refreshGame,
+            updateHighscore
           }}
         >
 

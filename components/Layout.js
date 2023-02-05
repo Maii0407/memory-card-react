@@ -1,9 +1,15 @@
+import { useContext } from "react";
+
+import { GlobalContext } from "@/pages/_app";
+
 import {
   Flex,
   Text
 } from "@chakra-ui/react";
 
 export const Layout = ({ children }) => {
+  const { highscore } = useContext( GlobalContext );
+
   return (
     <Flex
       direction='column'
@@ -31,7 +37,7 @@ export const Layout = ({ children }) => {
           padding='10px'
           backgroundColor='gray.900'
         >
-          Highscore: Level 1
+          { `Highscore: Level ${ highscore }` }
         </Text>
       </Flex>
       { children }

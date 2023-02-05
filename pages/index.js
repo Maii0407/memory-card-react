@@ -14,6 +14,7 @@ export default function Home() {
     allDigimon, setAllDigimon,
     shuffleArray,
     refreshGame,
+    setHighscore
   } = useContext( GlobalContext );
 
   const router = useRouter();
@@ -40,10 +41,19 @@ export default function Home() {
 
   useEffect(() => {
     if( allDigimon.length === 0 ) {
-      fetchDigimonList()
+      fetchDigimonList();
     }
     return;
-  });
+  }, []);
+
+  useEffect(() => {
+    const foundHighscore = JSON.parse( localStorage.getItem( 'highscore' ));
+
+    if( foundHighscore ) {
+      setHighscore( foundHighscore.value );
+    }
+    return;
+  }, [])
 
   return (
     <Flex

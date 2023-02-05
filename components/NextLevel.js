@@ -12,13 +12,15 @@ import {
 export const NextLevelScreen = () => {
   const {
     setNextLevel,
-    currentLevel, setCurrentLevel,
+    setCurrentLevel,
     refreshGame,
+    updateHighscore
   } = useContext( GlobalContext );
 
   const router = useRouter();
 
   const onFinishGame = () => {
+    updateHighscore();
     setNextLevel( false );
     setCurrentLevel(1);
 
@@ -26,6 +28,7 @@ export const NextLevelScreen = () => {
   };
 
   const onNextLevel = () => {
+    updateHighscore();
     //increase current level
     setNextLevel( false );
 
