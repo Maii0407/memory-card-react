@@ -51,6 +51,7 @@ export const WinScreen = () => {
           onClick={ () => handleClose() }
           variant='outline'
           colorScheme='green'
+          textStyle={{ lg: 'pixel' }}
         >
           Finish
         </Button>

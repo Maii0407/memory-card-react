@@ -6,7 +6,6 @@ import {
   Flex,
   Image,
   Text,
-  useToast
 } from "@chakra-ui/react";
 
 export const PlayCards = ({ data }) => {
@@ -19,36 +18,18 @@ export const PlayCards = ({ data }) => {
     setGameOver,
     setCurrentLevel
   } = useContext( GlobalContext );
-  const toast = useToast();
 
   const handleClick = () => {
     const found = clickedArray.find( element => element === data );
 
     if( found ) {
-      toast({
-        title: `${ data.name } Already Clicked`,
-        status: 'error',
-        duration: 3000,
-        position: 'top',
-        isClosable: true
-      });
-
       //back to level 1 lol
       setCurrentLevel(1);
       setGameOver( true );
     }
     else {
       setClickedArray([ ...clickedArray, data ]);
-
       shuffleArray( currentArray, setCurrentArray );
-  
-      toast({
-        title: `${ data.name } +1`,
-        status: 'success',
-        duration: 3000,
-        position: 'top',
-        isClosable: true
-      })
     }
   }
 
@@ -57,9 +38,12 @@ export const PlayCards = ({ data }) => {
       direction='column'
       alignItems='center'
       gap='10px'
-      backgroundColor='gray.700'
+      backgroundColor='gray.500'
       borderRadius='10px'
       padding='10px'
+      _hover={{
+        cursor: 'pointer'
+      }}
     >
       <Image
         onClick={ () => handleClick() }
@@ -68,7 +52,10 @@ export const PlayCards = ({ data }) => {
         borderRadius='10px'
       />
       <Text
+        textStyle={{ lg: 'pixel' }}
         fontSize={{ base: '10px' }}
+        color='gray.900'
+        fontWeight='bold'
       >
         { data.name }
       </Text>

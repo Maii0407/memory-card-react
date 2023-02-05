@@ -10,17 +10,24 @@ import {
 } from "@chakra-ui/react";
 
 export const GameOverScreen = () => {
-  const { setGameOver, newGame } = useContext( GlobalContext );
+  const {
+    setGameOver,
+    setCurrentLevel,
+    refreshGame,
+  } = useContext( GlobalContext );
   const router = useRouter();
 
-  const handleClose = () => {
+  const onFinishGame = () => {
     setGameOver( false );
+    setCurrentLevel(1);
+
     router.push('/');
   };
 
-  const handleNewGame = () => {
+  const onNewGame = () => {
     setGameOver( false );
-    newGame();
+    setCurrentLevel(1);
+    refreshGame();
   };
 
   return (
@@ -55,16 +62,18 @@ export const GameOverScreen = () => {
           padding='10px'
         >
           <Button
-            onClick={ () => handleClose() }
+            onClick={ () => onFinishGame() }
             variant='outline'
             colorScheme='red'
+            textStyle={{ lg: 'pixel' }}
           >
             Close
           </Button>
           <Button
-            onClick={ () => handleNewGame() }
+            onClick={ () => onNewGame() }
             variant='outline'
             colorScheme='green'
+            textStyle={{ lg: 'pixel' }}
           >
             New Game
           </Button>

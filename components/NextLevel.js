@@ -10,17 +10,26 @@ import {
 } from "@chakra-ui/react";
 
 export const NextLevelScreen = () => {
-  const { setNextLevel, newGame } = useContext( GlobalContext );
+  const {
+    setNextLevel,
+    currentLevel, setCurrentLevel,
+    refreshGame,
+  } = useContext( GlobalContext );
+
   const router = useRouter();
 
-  const handleClose = () => {
+  const onFinishGame = () => {
     setNextLevel( false );
+    setCurrentLevel(1);
+
     router.push('/');
   };
 
-  const handleNewGame = () => {
+  const onNextLevel = () => {
+    //increase current level
     setNextLevel( false );
-    newGame();
+
+    refreshGame();
   };
 
   return (
@@ -55,16 +64,18 @@ export const NextLevelScreen = () => {
           padding='10px'
         >
           <Button
-            onClick={ () => handleClose() }
+            onClick={ () => onFinishGame() }
             variant='outline'
             colorScheme='red'
+            textStyle={{ lg: 'pixel' }}
           >
             Finish
           </Button>
           <Button
-            onClick={ () => handleNewGame() }
+            onClick={ () => onNextLevel() }
             variant='outline'
             colorScheme='green'
+            textStyle={{ lg: 'pixel' }}
           >
             Continue
           </Button>

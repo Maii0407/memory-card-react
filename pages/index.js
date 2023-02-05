@@ -1,4 +1,5 @@
 import { useEffect, useContext } from "react";
+import { useRouter } from "next/router";
 import axios from 'axios';
 
 import { GlobalContext } from "./_app";
@@ -9,7 +10,13 @@ import {
 } from "@chakra-ui/react";
 
 export default function Home() {
-  const { allDigimon, setAllDigimon, shuffleArray, newGame } = useContext( GlobalContext );
+  const {
+    allDigimon, setAllDigimon,
+    shuffleArray,
+    refreshGame,
+  } = useContext( GlobalContext );
+
+  const router = useRouter();
 
   const fetchDigimonList = async () => {
     try {
@@ -23,6 +30,12 @@ export default function Home() {
     catch( error ) {
       console.log({ error })
     }
+  };
+
+  const onNewGame = () => {
+    refreshGame();
+
+    router.push( '/play' );
   };
 
   useEffect(() => {
@@ -40,7 +53,7 @@ export default function Home() {
     >
 
       <Button
-        onClick={ () => newGame() }
+        onClick={ () => onNewGame() }
         textStyle='pixel'
         variant='outline'
         colorScheme='green'

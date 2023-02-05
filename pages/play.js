@@ -49,13 +49,14 @@ export default function Play() {
       <Text
         textStyle='pixel'
         textAlign='center'
-        margin='20px 0'
+        marginBottom='20px'
       >
         { `Level ${ currentLevel }` }
       </Text>
       <Grid
-        gridTemplateColumns='repeat( 2, 1fr )'
-        gridGap='10px'
+        gridTemplateColumns={{ base: 'repeat( 2, 1fr )', lg: 'repeat( 4, 1fr )' }}
+        gridGap={{ base: '10px', lg: '25px'}}
+        padding='0 20px'
       >
         {
           currentArray.map(( digimonData ) => {
