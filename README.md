@@ -1,6 +1,4 @@
 # DigiMatch
-#### 📝 Description
-A memory card game web app, built using Next.js is a fun and interactive game where players match pairs of cards.
 
 ### [Live Demo](https://digimatch.vercel.app/)
 
