@@ -8,14 +8,15 @@ A memory card game web app, built using Next.js is a fun and interactive game wh
 
 #### 💡 Features
 * Implemented card shuffling logic using Fisher-Yates algorithm:
-`
+
+```
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     const temp = array[i];
     array[i] = array[j];
     array[j] = temp;
   }
-`
+```
 * User highscore is saved in local storage, allowing users to keep track of their best scores and compete against themselves over time.
 * Responsive on mobile
 
